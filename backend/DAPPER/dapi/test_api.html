@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Journey API Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+        }
+        .error {
+            color: #d9534f;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mood Journey API Tester</h1>
+    
+    <div class="form-group">
+        <label for="user-id">User ID:</label>
+        <input type="text" id="user-id" value="user123">
+    </div>
+    
+    <div class="form-group">
+        <label for="mood">Current Mood:</label>
+        <select id="mood">
+            <option value="sad">Sad</option>
+            <option value="anxious">Anxious</option>
+            <option value="angry">Angry</option>
+            <option value="envy">Envious</option>
+            <option value="frustrated">Frustrated</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="target-emotion">Target Emotion (optional):</label>
+        <select id="target-emotion">
+            <option value="">Default (Happy)</option>
+            <option value="happy">Happy</option>
+            <option value="calm">Calm</option>
+            <option value="peaceful">Peaceful</option>
+            <option value="content">Content</option>
+            <option value="confident">Confident</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="context">Context (Why do you feel this way?):</label>
+        <textarea id="context">I failed an important exam and I'm worried about my future.</textarea>
+    </div>
+    
+    <button id="generate-btn">Generate Journey</button>
+    
+    <div id="loading" class="loading">
+        <p>Generating your personalized journey... This may take up to 30 seconds.</p>
+    </div>
+    
+    <div id="error" class="error"></div>
+    
+    <h2>Response:</h2>
+    <pre id="response">No response yet. Click "Generate Journey" to test the API.</pre>
+    
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', async function() {
+            const userId = document.getElementById('user-id').value;
+            const mood = document.getElementById('mood').value;
+            const targetEmotion = document.getElementById('target-emotion').value;
+            const context = document.getElementById('context').value;
+            
+            if (!userId || !mood || !context) {
+                document.getElementById('error').textContent = 'Please fill in all required fields.';
+                return;
+            }
+            
+            document.getElementById('error').textContent = '';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('response').textContent = 'Waiting for response...';
+            
+            try {
+                const requestData = {
+                    user_id: userId,
+                    mood: mood,
+                    context: context
+                };
+                
+                // Add target_emotion if specified
+                if (targetEmotion) {
+                    requestData.target_emotion = targetEmotion;
+                }
+                
+                const response = await fetch('/api/v1/courses/generate/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData),
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to generate journey');
+                }
+                
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('error').textContent = `Error: ${error.message}`;
+                document.getElementById('response').textContent = 'An error occurred. See error message above.';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
