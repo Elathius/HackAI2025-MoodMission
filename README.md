@@ -1,3 +1,7 @@
+
+![Figmaflow](https://github.com/user-attachments/assets/a768d739-b268-47ea-9f41-b411098fa707)
+
+
 # Mood Journey API
 
 A Django REST API backend for a mental health app that generates personalized 5-step emotional journeys based on the user's current mood and context.
