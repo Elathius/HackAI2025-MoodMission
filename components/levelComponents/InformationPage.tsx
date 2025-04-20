@@ -8,19 +8,21 @@ type Properties = {
     returnFunction: any,
 }
 
-export default function Information({title, description, returnFunction}: Properties) {
+export default function Information({title, description}: Properties) {
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
-        <Pressable onPress={returnFunction}
-                            style={({ pressed }) => [
-                            {
-                              backgroundColor: pressed ? '#241f69' : '#4F46E5',
-                            },styles.button]}>
-                        <Text style={styles.text}>Next Button</Text>
-                    </Pressable>
+        <View style={styles.buttonContainer}>
+          <Pressable 
+                              style={({ pressed }) => [
+                              {
+                                backgroundColor: pressed ? '#241f69' : '#4F46E5',
+                              },styles.button]}>
+                          <Text style={styles.text}>Next</Text>
+                      </Pressable>
+        </View>
     </View>
   );
 }
@@ -30,12 +32,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 40,
+    backgroundColor: 'black',
+    borderWidth: 2,
+    borderColor: 'purple',
   },
   title: {
+    color: '#ffffff',
     fontSize: 40,
     fontWeight: 'bold',
   },
   description: {
+    color: '#ffffff',
     fontSize: 20,
   },
   separator: {
@@ -52,9 +59,19 @@ const styles = StyleSheet.create({
   infoContainer: {
     marginLeft: 20,
   },
+  buttonContainer: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    bottom: 40,
+    width: '100%',
+    alignItems: 'center',
+  },
   button: {
-    width: '30%',
-    height: '8%'
+    width: '50%',
+    paddingVertical: 12,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   name: {
     fontSize: 18,
@@ -66,7 +83,8 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   text: {
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#ffffff',
   },
   row: {

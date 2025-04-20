@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     message: {
       fontSize: 16,
-      color: '#333',
+      color: '#ffffff',
       flexShrink: 1,
       textAlign: 'center',
       width: '80%',

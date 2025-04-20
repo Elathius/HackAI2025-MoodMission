@@ -36,7 +36,7 @@ export default function index() {
 
         <Image
           source={require('@/assets/images/logo.png')} // adjust this path to your image
-          style={styles.logo}
+          style={[styles.logo, {tintColor: '#fff'}]}
         />
 
         <TextInput
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#000000',
   },
   title: {
     fontSize: 24,

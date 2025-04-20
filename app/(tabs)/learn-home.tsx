@@ -3,6 +3,8 @@ import { StyleSheet, Image } from 'react-native';
 import React from 'react'
 import { Text, View } from '@/components/Themed';
 import CourseLevelLabel from '@/components/CourseLevelLabel'
+import { Audio } from 'expo-av';
+import { useEffect } from 'react';
 
 type LevelLabelData = {
   id: string,
@@ -11,7 +13,25 @@ type LevelLabelData = {
 }
 
 export default function LearnHome() {
+  useEffect(() => {
+    let sound: Audio.Sound;
 
+    const loadAndPlay = async () => {
+      // Load sound from local or remote source
+      sound = new Audio.Sound();
+      await sound.loadAsync(require('@/assets/images/soundrawambient.mp3')); // or { uri: 'https://...' }
+      await sound.setIsLoopingAsync(true); // 🔁 loop it
+      await sound.playAsync(); // ▶️ start playing
+    };
+
+    loadAndPlay();
+
+    return () => {
+      if (sound) {
+        sound.unloadAsync(); // 💥 cleanup when component unmounts
+      }
+    };
+  }, []);
   
   return (
     <View style={[styles.container, {position: 'absolute'}]}>
@@ -49,24 +69,27 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '100%',
     height: '100%',
+    backgroundColor: '#000000'
   },
   circle: {
     width: 48,
     height: 48,
     borderRadius: 24, // makes it a circle
+    borderColor: '#ffffff',
+    borderWidth: 100,
     backgroundColor: '#4F46E5', // indigo or whatever you prefer
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
   },
   idText: {
-    color: 'white',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 16,
   },
   message: {
     fontSize: 16,
-    color: '#333',
+    color: '#000000',
     flexShrink: 1,
   },
 });

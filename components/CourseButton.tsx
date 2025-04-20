@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
       height: 40,
       borderRadius: 24, // makes it a circle
       //backgroundColor: '#4F46E5', // indigo or whatever you prefer
+      borderWidth: 2,
+      borderColor: '#ffffff',
       justifyContent: 'center',
       alignItems: 'center',
       marginRight: 12,

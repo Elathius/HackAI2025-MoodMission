@@ -134,7 +134,6 @@ export const options = {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
-    backgroundColor: '#ffffff',
   },
   container: {
     flexGrow: 1,
