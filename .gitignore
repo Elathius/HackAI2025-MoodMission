@@ -9,6 +9,7 @@ media
 
 # Environment variables
 **/.env
+.env*.local
 
 # Virtual Environment
 venv/
@@ -23,3 +24,33 @@ ENV/
 
 # OS specific
 .DS_Store
+*.pem
+
+# Node.js and React Native
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# typescript
+*.tsbuildinfo
