@@ -10,11 +10,12 @@ const STATE = Object.freeze({
     INITIAL_PROMPT: 0,
     QUIZ: 1,
     EDUCATION: 2,
-    GUIDED_ACTIVITY: 3,
-    CONCLUSION: 4,
-    FINAL_CHECK: 5,
-    REWARD: 6,
-    CONGRADULATIONS: 7,
+    EXPLANATION:3,
+    GUIDED_ACTIVITY: 4,
+    CONCLUSION: 5,
+    FINAL_CHECK: 6,
+    REWARD: 7,
+    CONGRADULATIONS: 8,
   });
 
 

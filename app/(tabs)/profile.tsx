@@ -10,11 +10,11 @@ type LineItem = {
 };
 
 const SETTINGS_DATA: LineItem[] = [
-  { id: '1', label: 'Notifications', icon: require('@/assets/images/pikachu.png') },
-  { id: '2', label: 'Privacy',       icon: require('@/assets/images/pikachu.png') },
-  { id: '3', label: 'Help',          icon: require('@/assets/images/pikachu.png') },
-  { id: '4', label: 'Share',          icon: require('@/assets/images/pikachu.png') },
-  { id: '5', label: 'About Us',          icon: require('@/assets/images/pikachu.png') },
+  { id: '1', label: 'Notifications', icon: require('@/assets/images/notification.png') },
+  { id: '2', label: 'Privacy',       icon: require('@/assets/images/privacy.png') },
+  { id: '3', label: 'Help',          icon: require('@/assets/images/help.svg') },
+  { id: '4', label: 'Share',          icon: require('@/assets/images/share.png') },
+  { id: '5', label: 'About Us',          icon: require('@/assets/images/about_us.png') },
 ];
 
 export default function TabTwoScreen() {
@@ -40,8 +40,8 @@ export default function TabTwoScreen() {
           />
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.name}>Happy Puppy</Text>
-          <Text style={styles.email}>UWU240034@utdallas.edu</Text>
+          <Text style={styles.name}>Michael Smith</Text>
+          <Text style={styles.email}>MTS240034@utdallas.edu</Text>
         </View>
       </View>
 

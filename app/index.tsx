@@ -35,7 +35,7 @@ export default function index() {
         <Text style={styles.title}>Welcome to Mood Mission!</Text>
 
         <Image
-          source={require('@/assets/images/pikachu.png')} // adjust this path to your image
+          source={require('@/assets/images/logo.png')} // adjust this path to your image
           style={styles.logo}
         />
 
